@@ -68,27 +68,19 @@ export class MapComponent implements OnInit {
         });
 
         tiles.addTo(this.map);
-
-        this.markerService.getData()
-            .subscribe((res) => {
-                const geoJsonMarkerOptions = {
-                    radius: 8,
-                    fillColor: '#ffae00',
-                    color: '#000',
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                };
-
-                this.markerClusterGroup = L.markerClusterGroup();
-                L.geoJSON(res).addTo(this.markerClusterGroup);
-                this.markerClusterGroup.addTo(this.map);
-            })
     }
 
     public zoomToCountry(coords: any, zoomLevel: number = 5) {
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
-        this.markerService.makeCapitalMarkers(this.map);
+        if (this.markerClusterGroup) {
+            this.markerClusterGroup.clearLayers();
+        }
+        this.markerService.getData(coords.id)
+            .subscribe((res) => {
+                this.markerClusterGroup = L.markerClusterGroup();
+                L.geoJSON(res).addTo(this.markerClusterGroup);
+                this.markerClusterGroup.addTo(this.map);
+            })
     }
 
 }

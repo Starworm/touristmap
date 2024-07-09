@@ -13,12 +13,13 @@ export class CountrySelectorComponent {
     public onCountryChange(event: Event) {
         const selectedValue = (event.target as HTMLSelectElement).value;
         const result = selectedValue.split(',').map(coord => parseFloat(coord));
-        const coords = {
+        const selCountry = {
             lat: result[0],
             lon: result[1],
-            zoom: result[2]
+            zoom: result[2],
+            id: result[3]
         }
-        this.selectedCountry.emit(coords);
+        this.selectedCountry.emit(selCountry);
     }
 
 }

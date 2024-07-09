@@ -2,14 +2,16 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import * as L from 'leaflet';
 import {PopupService} from "./popup.service";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class MarkerService {
 
-    private capitals: string = '/assets/data/usa-capitals.geojson';
+    private usCities: string = '/assets/data/usa-cities.geojson';
+    private caCities: string = '/assets/data/canada-cities.geojson';
+    private ukCities: string = '/assets/data/uk-cities.geojson';
     constructor(
         private http: HttpClient,
         private popupService: PopupService
@@ -17,45 +19,18 @@ export class MarkerService {
     }
 
     /**
-     * adds a standard marker to the map according to coordinates
-     * @param map - the map
+     * returns list of capitals by country id
+     * @param id - country id
      */
-    public makeCapitalMarkers(map: L.Map): void {
-        this.http.get(this.capitals)
-            .subscribe((res: any) => {
-                for (const c of res.features) {
-                    const lon = c.geometry.coordinates[0];
-                    const lat = c.geometry.coordinates[1];
-                    const marker = L.marker([lat, lon]);
-
-                    marker.addTo(map);
-                }
-        })
-    }
-
-    public getData(): Observable<any> {
-        return this.http.get(this.capitals)
-    }
-
-    /**
-     * adds a circle to the map according to coordinates
-     * @param map - the map
-     */
-    public makeCapitalCircleMarkers(map: L.Map): void {
-        this.http.get(this.capitals)
-            .subscribe((res: any) => {
-                const maxPop = Math.max(...res.features.map((el: any) => el.properties.population), 0);
-                for (const c of res.features) {
-                    const lon = c.geometry.coordinates[0];
-                    const lat = c.geometry.coordinates[1];
-                    const circle = L.circleMarker([lat, lon], {
-                        radius: this.scaleRadius(c.properties.population, maxPop)
-                    });
-                    circle.bindPopup(this.popupService.makeCapitalPopup(c.properties));
-
-                    circle.addTo(map);
-                }
-            })
+    public getData(id: number): Observable<any> {
+        if (id === 1) {
+            return this.http.get(this.usCities)
+        } if (id === 2) {
+            return this.http.get(this.caCities)
+        } if (id === 3) {
+            return this.http.get(this.ukCities)
+        }
+        return of(null);
     }
 
     /**
