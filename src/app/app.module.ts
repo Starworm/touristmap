@@ -8,18 +8,26 @@ import {HttpClientModule} from "@angular/common/http";
 import {MarkerService} from "./services/marker.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import { CountrySelectorComponent } from './components/country-selector/country-selector.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MapComponent,
-        NavbarComponent
+        NavbarComponent,
+        CountrySelectorComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        NgbModule
+        NgbModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        MatSelectModule
     ],
     providers: [
         MarkerService

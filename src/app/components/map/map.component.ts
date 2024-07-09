@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 import {MarkerService} from "../../services/marker.service";
 import {ShapeService} from "../../services/shape.service";
 import {Layer} from "leaflet";
+import {CountriesService} from "../../services/countries.service";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -23,28 +24,39 @@ L.Marker.prototype.options.icon = iconDefault;
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements OnInit {
     /** leaflet map object */
-    private map: any;
+    private map: L.Map;
     /** list of US states */
     private states: any;
+    /** list of countries */
+    public countryList: any;
 
     constructor(
         private markerService: MarkerService,
-        private shapeService: ShapeService
+        private shapeService: ShapeService,
+        private countriesService: CountriesService
     ) {
     }
 
+    ngOnInit() {
+        this.initMap();
+    }
     /**
      * map initialization
      * @private
      */
     private initMap(): void {
         // initial map position
-        this.map = L.map('map', {
-            center: [39.343, -98.493],
-            zoom: 3
-        });
+        this.countriesService.getCountries()
+            .subscribe((countries) => {
+                this.countryList = countries;
+                this.map = L.map('map', {
+                    center: [39.343, -98.493],
+                    zoom: 3
+                });
+            })
+
 
         // provider of map (currently OpenStreetMap)
         const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -54,6 +66,10 @@ export class MapComponent implements AfterViewInit {
         });
 
         tiles.addTo(this.map);
+    }
+
+    public zoomToCountry(coords: any, zoomLevel: number = 5) {
+        this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
     }
 
     /**
@@ -114,15 +130,15 @@ export class MapComponent implements AfterViewInit {
         });
     }
 
-    ngAfterViewInit(): void {
-        this.initMap();
+    // ngAfterViewInit(): void {
+    //     this.initMap();
         // this.markerService.makeCapitalMarkers(this.map);
-        this.markerService.makeCapitalCircleMarkers(this.map);
-        this.shapeService.getStateShapes()
-            .subscribe(states => {
-                this.states = states;
-                this.initStatesLayer();
-            })
-    }
+        // this.markerService.makeCapitalCircleMarkers(this.map);
+        // this.shapeService.getStateShapes()
+        //     .subscribe(states => {
+        //         this.states = states;
+        //         this.initStatesLayer();
+        //     })
+    // }
 
 }

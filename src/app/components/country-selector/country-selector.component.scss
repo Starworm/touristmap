@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    align-items: flex-end;
+
+    .title {
+        margin-right: 10px;
+    }
+}
+.selector {
+    display: flex;
+    width: 200px;
+}

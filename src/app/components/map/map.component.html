@@ -1,5 +1,11 @@
-<div class="map-container">
-    <div class="map-frame">
-        <div id="map"></div>
+<div class="container">
+    <app-country-selector class="country-selector"
+        [countryList]="countryList"
+        (selectedCountry)="zoomToCountry($event)">
+    </app-country-selector>
+    <div class="map-container">
+        <div class="map-frame">
+            <div id="map"></div>
+        </div>
     </div>
 </div>
