@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import * as L from 'leaflet';
 import {PopupService} from "./popup.service";
+import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -30,6 +31,10 @@ export class MarkerService {
                     marker.addTo(map);
                 }
         })
+    }
+
+    public getData(): Observable<any> {
+        return this.http.get(this.capitals)
     }
 
     /**

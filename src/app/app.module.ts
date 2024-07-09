@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import { CountrySelectorComponent } from './components/country-selector/country-selector.component';
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { CountrySelectorComponent } from './components/country-selector/country-
         NgbModule,
         BrowserAnimationsModule,
         MatInputModule,
-        MatSelectModule
+        MatSelectModule,
+        LeafletModule,
     ],
     providers: [
         MarkerService

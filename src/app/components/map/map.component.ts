@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {MarkerService} from "../../services/marker.service";
 import {ShapeService} from "../../services/shape.service";
-import {Layer} from "leaflet";
 import {CountriesService} from "../../services/countries.service";
+import 'leaflet.markercluster';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -31,6 +31,8 @@ export class MapComponent implements OnInit {
     private states: any;
     /** list of countries */
     public countryList: any;
+    /** leaflet cluster object */
+    private markerClusterGroup: L.MarkerClusterGroup;
 
     constructor(
         private markerService: MarkerService,
@@ -66,79 +68,27 @@ export class MapComponent implements OnInit {
         });
 
         tiles.addTo(this.map);
+
+        this.markerService.getData()
+            .subscribe((res) => {
+                const geoJsonMarkerOptions = {
+                    radius: 8,
+                    fillColor: '#ffae00',
+                    color: '#000',
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                };
+
+                this.markerClusterGroup = L.markerClusterGroup();
+                L.geoJSON(res).addTo(this.markerClusterGroup);
+                this.markerClusterGroup.addTo(this.map);
+            })
     }
 
     public zoomToCountry(coords: any, zoomLevel: number = 5) {
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
+        this.markerService.makeCapitalMarkers(this.map);
     }
-
-    /**
-     * creates a layer with US state with changing color while mouse hovering
-     * @private
-     */
-    private initStatesLayer() {
-        const stateLayer = L.geoJson(this.states, {
-            style: (feature) => ({
-                weight: 3,
-                opacity: 0.5,
-                color: '#008f68',
-                fillOpacity: 0.8,
-                fillColor: '#6db65b'
-            }),
-            onEachFeature: (feature: any, layer: Layer) => {
-                layer.on({
-                    mouseover: (e) => (this.highlightFeatures(e)),
-                    mouseout: (e) => (this.resetFeature(e)),
-                })
-            }
-        });
-        this.map.addLayer(stateLayer);
-        stateLayer.bringToBack();
-    }
-
-    /**
-     * highlights element
-     * @param e
-     * @private
-     */
-    private highlightFeatures(e: any) {
-        const layer = e.target;
-
-        layer.setStyle({
-            weight: 10,
-            opacity: 1.0,
-            color: '#DFA612',
-            fillOpacity: 1.0,
-            fillColor: '#FAE042'
-        });
-    }
-
-    /**
-     * resets element color
-     * @param e
-     * @private
-     */
-    private resetFeature(e: any) {
-        const layer = e.target;
-
-        layer.setStyle({
-            weight: 3,
-            opacity: 0.5,
-            color: '#008f68',
-            fillOpacity: 0.8,
-            fillColor: '#6DB65B'
-        });
-    }
-
-    // ngAfterViewInit(): void {
-    //     this.initMap();
-        // this.markerService.makeCapitalMarkers(this.map);
-        // this.markerService.makeCapitalCircleMarkers(this.map);
-        // this.shapeService.getStateShapes()
-        //     .subscribe(states => {
-        //         this.states = states;
-        //         this.initStatesLayer();
-        //     })
-    // }
 
 }
