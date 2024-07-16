@@ -4,21 +4,20 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-      "start:nlr": "ng serve --no-live-reload",
-      "build": "ng build",
-
+    "start:nlr": "ng serve --no-live-reload",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.1.0",
-    "@angular/cdk": "^16.2.14",
+    "@angular/cdk": "^17.3.10",
     "@angular/common": "^18.1.0",
     "@angular/compiler": "^18.1.0",
     "@angular/core": "^18.1.0",
     "@angular/forms": "^18.1.0",
-    "@angular/material": "^16.2.14",
+    "@angular/material": "^17.3.10",
     "@angular/platform-browser": "^18.1.0",
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
