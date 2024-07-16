@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import * as L from 'leaflet';
 import {PopupService} from "./popup.service";
 import {Observable, of} from "rxjs";
