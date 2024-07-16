@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "tourist-map:build:production"
+              "buildTarget": "tourist-map:build:production"
             },
             "development": {
-              "browserTarget": "tourist-map:build:development"
+              "buildTarget": "tourist-map:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tourist-map:build"
+            "buildTarget": "tourist-map:build"
           }
         },
         "test": {
