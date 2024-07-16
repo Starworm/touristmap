@@ -11,6 +11,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Alabama",
         "name": "Montgomery",
         "population": 199518
@@ -26,6 +27,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Alaska",
         "name": "Juneau",
         "population": 32094
@@ -41,6 +43,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Arizona",
         "name": "Phoenix",
         "population": 1626078
@@ -56,6 +59,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Arkansas",
         "name": "Little Rock",
         "population": 198606
@@ -71,6 +75,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "California",
         "name": "Sacramento",
         "population": 501901
@@ -86,6 +91,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Colorado",
         "name": "Denver",
         "population": 704621
@@ -101,6 +107,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Connecticut",
         "name": "Hartford",
         "population": 123400
@@ -116,6 +123,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Delaware",
         "name": "Dover",
         "population": 37538
@@ -131,6 +139,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Florida",
         "name": "Tallahassee",
         "population": 191049
@@ -146,6 +155,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Georgia",
         "name": "Atlanta",
         "population": 486290
@@ -161,6 +171,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Hawaii",
         "name": "Honolulu",
         "population": 350395
@@ -176,6 +187,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Idaho",
         "name": "Boise",
         "population": 226570
@@ -191,6 +203,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Illinois",
         "name": "Springfield",
         "population": 114868
@@ -206,6 +219,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Indiana",
         "name": "Indianapolis",
         "population": 863002
@@ -221,6 +235,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Iowa",
         "name": "Des Moines",
         "population": 217521
@@ -236,6 +251,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Kansas",
         "name": "Topeka",
         "population": 126587
@@ -251,6 +267,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Kentucky",
         "name": "Frankfort",
         "population": 27621
@@ -266,6 +283,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Louisiana",
         "name": "Baton Rouge",
         "population": 225374
@@ -281,6 +299,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Maine",
         "name": "Augusta",
         "population": 18594
@@ -296,6 +315,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Maryland",
         "name": "Annapolis",
         "population": 39321
@@ -311,6 +331,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Massachusetts",
         "name": "Boston",
         "population": 685094
@@ -326,6 +347,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Michigan",
         "name": "Lansing",
         "population": 116986
@@ -341,6 +363,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Minnesota",
         "name": "Saint Paul",
         "population": 306621
@@ -356,6 +379,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Mississippi",
         "name": "Jackson",
         "population": 166965
@@ -371,6 +395,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Missouri",
         "name": "Jefferson City",
         "population": 42895
@@ -386,6 +411,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Montana",
         "name": "Helana",
         "population": 31429
@@ -401,6 +427,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Nebraska",
         "name": "Lincoln",
         "population": 284736
@@ -416,6 +443,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Nevada",
         "name": "Carson City",
         "population": 54745
@@ -431,6 +459,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "New Hampshire",
         "name": "Concord",
         "population": 43019
@@ -446,6 +475,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "New Jersey",
         "name": "Trenton",
         "population": 84964
@@ -461,6 +491,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "New Mexico",
         "name": "Santa Fe",
         "population": 83776
@@ -476,6 +507,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "New York",
         "name": "Albany",
         "population": 98251
@@ -491,6 +523,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "North Carolina",
         "name": "Raleigh",
         "population": 464758
@@ -506,6 +539,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "North Dakota",
         "name": "Bismarck",
         "population": 72865
@@ -521,6 +555,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Ohio",
         "name": "Columbus",
         "population": 879170
@@ -536,6 +571,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Oklahoma",
         "name": "Oklahoma City",
         "population": 643648
@@ -551,6 +587,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Oregon",
         "name": "Salem",
         "population": 169798
@@ -566,6 +603,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Pennsylvania",
         "name": "Harrisburg",
         "population": 49192
@@ -581,6 +619,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Rhode Island",
         "name": "Providence",
         "population": 180393
@@ -596,6 +635,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "South Carolina",
         "name": "Columbia",
         "population": 133114
@@ -611,6 +651,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "South Dakota",
         "name": "Pierre",
         "population": 14004
@@ -626,6 +667,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Tennessee",
         "name": "Nashville",
         "population": 667560
@@ -641,6 +683,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Texas",
         "name": "Austin",
         "population": 950715
@@ -656,6 +699,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Utah",
         "name": "Salt Lake City",
         "population": 200544
@@ -671,6 +715,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Vermont",
         "name": "Montpelier",
         "population": 7484
@@ -686,6 +731,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Virginia",
         "name": "Richmond",
         "population": 227032
@@ -701,6 +747,7 @@
         ]
       },
       "properties": {
+        "type": "monument",
         "state": "Washington",
         "name": "Olympia",
         "population": 51609
@@ -716,6 +763,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "West Virginia",
         "name": "Charleston",
         "population": 47929
@@ -731,6 +779,7 @@
         ]
       },
       "properties": {
+        "type": "waterfall",
         "state": "Wisconsin",
         "name": "Madison",
         "population": 255214
@@ -746,6 +795,7 @@
         ]
       },
       "properties": {
+        "type": "cave",
         "state": "Wyoming",
         "name": "Cheyenne",
         "population": 63624

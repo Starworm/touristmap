@@ -8,6 +8,7 @@ export class PopupService {
     constructor() {
     }
 
+    // TODO: Temporary solution (doesn't use, by the way). Should be a separate component with detailed description of attraction
     /**
      * returns a html-template of popup message
      * @param data
