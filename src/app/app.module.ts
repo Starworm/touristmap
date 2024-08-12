@@ -20,7 +20,9 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
         NavbarComponent,
         CountrySelectorComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         NgbModule,
         BrowserAnimationsModule,

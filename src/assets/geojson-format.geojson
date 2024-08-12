@@ -1,0 +1,32 @@
+{
+    "type": "Feature";
+    "geometry": {
+    "type": "Point",
+        "coordinates": [
+            -123.116226,
+            49.246292
+        ]
+    },
+    "properties": {
+        "country": "United States",
+        "id": 111,
+        "type": "monument",
+        "name": "A holy warriors",
+        "pictures": [
+            {
+                "id": 123,
+                "address": "http://www.pict.com/pict1.jpg"
+            },
+            {
+                "id": 231,
+                "address": "http://www.pict.com/pict2.jpg"
+            },
+            {
+                "id": 321,
+                "address": "http://www.pict.com/pict3.jpg"
+            },
+        ],
+        "description": "This monument is depicts a great war between ......",
+        "linkToWiki": "http://en.wikipedia.com/holywarriors",
+    }
+}
