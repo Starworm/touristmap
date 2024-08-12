@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
     public loginForm: FormGroup;
 
     constructor(
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private router: Router
     ) {
         this.loginForm = this.fb.group({
             username: ['', [Validators.required]],
@@ -35,5 +37,12 @@ export class LoginComponent {
             console.log('password', password);
             // TODO: request to end-point
         }
+    }
+
+    /**
+     * navigates to reset password page
+     */
+    public forgetPassword() {
+        this.router.navigate(['resetpassword']);
     }
 }
