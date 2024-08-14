@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                    <h3>Registration Form</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                class="form-control"
+                                formControlName="name"
+                                placeholder="Enter your name"
+                            />
+                            <div *ngIf="registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched" class="text-danger">
+                                Name is required.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Surname</label>
+                            <input
+                                type="text"
+                                id="surname"
+                                class="form-control"
+                                formControlName="surname"
+                                placeholder="Enter your surname"
+                            />
+                            <div *ngIf="registrationForm.controls['surname'].invalid && registrationForm.controls['surname'].touched" class="text-danger">
+                                Surname is required.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Age</label>
+                            <input
+                                type="number"
+                                id="age"
+                                class="form-control"
+                                formControlName="age"
+                                placeholder="Enter your age"
+                            />
+                            <div *ngIf="registrationForm.controls['age'].invalid && registrationForm.controls['age'].touched" class="text-danger">
+                                Please enter a valid age.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nickname" class="form-label">Nickname</label>
+                            <input
+                                type="text"
+                                id="nickname"
+                                class="form-control"
+                                formControlName="nickname"
+                                placeholder="Enter your nickname"
+                            />
+                            <div *ngIf="registrationForm.controls['nickname'].invalid && registrationForm.controls['nickname'].touched" class="text-danger">
+                                Nickname is required.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input
+                                type="text"
+                                id="country"
+                                class="form-control"
+                                formControlName="country"
+                                placeholder="Enter your country"
+                            />
+                            <div *ngIf="registrationForm.controls['country'].invalid && registrationForm.controls['country'].touched" class="text-danger">
+                                Country is required.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input
+                                type="text"
+                                id="city"
+                                class="form-control"
+                                formControlName="city"
+                                placeholder="Enter your city"
+                            />
+                            <div *ngIf="registrationForm.controls['city'].invalid && registrationForm.controls['city'].touched" class="text-danger">
+                                City is required.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                formControlName="email"
+                                placeholder="Enter your email"
+                            />
+                            <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched" class="text-danger">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Mobile Phone</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                class="form-control"
+                                formControlName="phone"
+                                placeholder="Enter your mobile phone"
+                            />
+                            <div *ngIf="registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].touched" class="text-danger">
+                                Please enter a valid phone number.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100" [disabled]="registrationForm.invalid">
+                            Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

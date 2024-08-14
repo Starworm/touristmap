@@ -13,6 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import { CountrySelectorComponent } from './components/country-selector/country-selector.component';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {RegisterComponent} from "./components/register/register.component";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -28,7 +29,9 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
         BrowserAnimationsModule,
         MatInputModule,
         MatSelectModule,
-        LeafletModule], providers: [
+        LeafletModule,
+        RegisterComponent
+    ], providers: [
         MarkerService,
         provideHttpClient(withInterceptorsFromDi())
     ] })

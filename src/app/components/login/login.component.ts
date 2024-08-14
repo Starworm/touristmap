@@ -45,4 +45,8 @@ export class LoginComponent {
     public forgetPassword() {
         this.router.navigate(['resetpassword']);
     }
+
+    newRegistration() {
+        this.router.navigate(['newuser']);
+    }
 }
