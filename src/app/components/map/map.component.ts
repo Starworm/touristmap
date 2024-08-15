@@ -4,7 +4,7 @@ import {MarkerService} from "../../services/marker.service";
 import {CountriesService} from "../../services/countries.service";
 import 'leaflet.markercluster';
 import 'leaflet.featuregroup.subgroup';
-import * as attraction from '../../enums/attractions.enum';
+import * as events from '../../enums/eventsEnum';
 
 @Component({
     selector: 'app-map',
@@ -26,22 +26,20 @@ export class MapComponent implements OnInit {
     private markerClusterGroup: any;
 
     /** leaflet layer groups */
-    private monumentGroup: L.Layer[] = [];
-    private caveGroup: L.Layer[] = [];
-    private waterfallGroup: L.Layer[] = [];
+    private concertGroup: L.Layer[] = [];
+    private boardgamesGroup: L.Layer[] = [];
     private overlayMaps: any;
 
     /** ????? */
-    private monumentSubGroup: any;
-    private caveSubGroup: any;
-    private waterfallSubGroup: any;
+    private concertSubGroup: any;
+    private boardgamesSubGroup: any;
 
     /** ????  */
-    monuments: any;
-    caves: any;
-    waterfalls: any;
+    concerts: any;
+    boardgames: any;
 
     private layerControl: any;
+    tiles: any;
 
     // Initial map settings
     private LATITUDE_INIT = 0;
@@ -107,9 +105,9 @@ export class MapComponent implements OnInit {
      */
     public zoomToCountry(coords: any, zoomLevel: number = 5) {
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
-        if (this.markerClusterGroup) {
-            this.markerClusterGroup.clearLayers();
-        }
+        // if (this.markerClusterGroup) {
+        //     this.markerClusterGroup.clearLayers();
+        // }
         // if (this.waterfalls) {
         //     this.waterfalls.clearLayers();
         // }
@@ -126,52 +124,37 @@ export class MapComponent implements OnInit {
 
         this.markerService.getData(coords.id)
             .subscribe((res) => {
-                this.markerClusterGroup = L.markerClusterGroup();
+                // this.markerClusterGroup = L.markerClusterGroup();
 
                 res.features.forEach((el: any) => {
                     switch (el.properties.type) {
-                        case attraction.AttractionsEnum.monument:
-                            const monument = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('a monument');
-                            this.monumentGroup.push(monument);
+                        case events.EventsEnum.concert:
+                            const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('concert');
+                            this.concertGroup.push(concert);
                             break;
-                        case attraction.AttractionsEnum.cave:
-                            const cave = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('a cave');
-                            this.caveGroup.push(cave);
-                            break;
-                        case attraction.AttractionsEnum.waterfall:
-                            const waterfall = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('a waterfall');
-                            this.waterfallGroup.push(waterfall);
+                        case events.EventsEnum.boardgames:
+                            const boardgames = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('boardgames');
+                            this.boardgamesGroup.push(boardgames);
                             break;
                         default: throw new Error('No such types!');
                     }
                 })
 
-                // this.markerClusterGroup = L.markerClusterGroup();
-                // L.geoJSON(res).addTo(this.markerClusterGroup);
-                // this.markerClusterGroup.addTo(this.map);
+                // @ts-ignore
+                this.concertSubGroup = L.featureGroup.subGroup(this.concertGroup);
+                // @ts-ignore
+                this.boardgamesSubGroup = L.featureGroup.subGroup(this.boardgamesGroup);
 
-                // @ts-ignore
-                this.monumentSubGroup = L.featureGroup.subGroup(this.monumentGroup);
-                // @ts-ignore
-                this.waterfallSubGroup = L.featureGroup.subGroup(this.waterfallGroup);
-                // @ts-ignore
-                this.caveSubGroup = L.featureGroup.subGroup(this.caveGroup);
-
-                this.waterfalls = L.layerGroup(this.waterfallGroup).addTo(this.map);
-                this.monuments = L.layerGroup(this.monumentGroup).addTo(this.map);
-                this.caves = L.layerGroup(this.caveGroup).addTo(this.map);
+                this.concerts = L.layerGroup(this.concertGroup).addTo(this.map);
+                this.boardgames = L.layerGroup(this.boardgamesGroup).addTo(this.map);
 
                 this.overlayMaps = {
-                    'Monuments': this.monuments,
-                    'Waterfalls': this.waterfalls,
-                    'Caves': this.caves
+                    'Boardgames': this.boardgames,
+                    'Concerts': this.concerts,
                 }
 
-                this.markerClusterGroup.addTo(this.map);
-                this.monumentSubGroup.addTo(this.map);
-                this.caveSubGroup.addTo(this.map);
-                this.waterfallSubGroup.addTo(this.map);
-
+                this.concertSubGroup.addTo(this.map);
+                this.boardgamesSubGroup.addTo(this.map);
 
                 this.layerControl = L.control.layers(undefined, this.overlayMaps).addTo(this.map);
             })
