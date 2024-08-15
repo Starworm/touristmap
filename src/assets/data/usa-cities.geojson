@@ -8,8 +8,24 @@
         "coordinates": [ -86.41974, 32.301935]
       },
       "properties": {
+        "id": 1,
         "type": "concert",
-        "name": "Concert A"
+        "label": "Wooden Maiden Concert",
+        "description": "A fabulous concert of new Montenegrin Light-Wooden band. Here and further a long description of the band, it's music and bla-bla-bla",
+        "host": {
+            "name": "Vasya",
+            "surname": "Pupkin"
+        },
+        "email": "blabla@gmail.com",
+        "phoneNumber": 12345677,
+        "guestsAmount": 20,
+        "address": {
+                "country": "USA",
+                "city": "New York",
+                "street": "5th Avenue",
+                "house": "12"
+            },
+        "date": "2024-03-01T10:05:08+01:00"
       }
     },
     {
@@ -19,9 +35,25 @@
         "coordinates": [-85.331122, 32.736009]
       },
       "properties": {
-        "type": "boardgames",
-        "name": "Boardgames B"
-      }
+              "id": 2,
+              "type": "boardgames",
+              "label": "DND game",
+              "description": "A great game with a great game master. Here and further a long description of the game, master and bla-bla-bla",
+              "host": {
+                  "name": "Hren",
+                  "surname": "Morzhov"
+              },
+              "email": "aaaa@gmail.com",
+              "phoneNumber": 877654321,
+              "guestsAmount": 10,
+              "address": {
+                      "country": "USA",
+                      "city": "Detroit",
+                      "street": "Main street",
+                      "house": "10"
+                  },
+              "date": "2024-01-01T10:05:08+01:00"
+            }
     },
     {
       "type": "Feature",
@@ -30,9 +62,25 @@
         "coordinates": [-72.677, 41.767]
       },
       "properties": {
-        "type": "concert",
-        "name": "Concert C"
-      }
+              "id": 3,
+              "type": "concert",
+              "label": "Pornofilmy",
+              "description": "A great concert of Russian rock band. Here and further a long description of the band, it's music and bla-bla-bla",
+              "host": {
+                  "name": "Ivan",
+                  "surname": "Petrov"
+              },
+              "email": "sssdds@gmail.com",
+              "phoneNumber": 4444444,
+              "guestsAmount": 100,
+              "address": {
+                      "country": "USA",
+                      "city": "Los Angeles",
+                      "street": "Lt. Mnt. Braids",
+                      "house": "99"
+                  },
+              "date": "2024-08-01T10:05:08+01:00"
+            }
     }
   ]
 }

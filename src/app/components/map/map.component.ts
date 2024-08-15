@@ -129,11 +129,11 @@ export class MapComponent implements OnInit {
                 res.features.forEach((el: any) => {
                     switch (el.properties.type) {
                         case events.EventsEnum.concert:
-                            const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('concert');
+                            const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(el.properties.label);
                             this.concertGroup.push(concert);
                             break;
                         case events.EventsEnum.boardgames:
-                            const boardgames = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup('boardgames');
+                            const boardgames = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(el.properties.label);
                             this.boardgamesGroup.push(boardgames);
                             break;
                         default: throw new Error('No such types!');
