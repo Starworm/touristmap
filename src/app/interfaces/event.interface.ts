@@ -25,10 +25,11 @@ export interface EventInterface {
         street: string;
         house: string
     };
+    place: string;
     /** event's date */
-    date: Date;
+    date: string;
     /** event's time */
-    time: string;
+    time?: string;
     /** event's price */
     price?: number;
 }

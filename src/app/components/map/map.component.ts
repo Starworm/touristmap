@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {ApplicationRef, Component, ComponentFactoryResolver, EmbeddedViewRef, Injector, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {MarkerService} from "../../services/marker.service";
 import {CountriesService} from "../../services/countries.service";
 import 'leaflet.markercluster';
 import 'leaflet.featuregroup.subgroup';
 import * as events from '../../enums/eventsEnum';
+import {PopupComponent} from "../popup/popup.component";
+import {EventInterface} from "../../interfaces/event.interface";
 
 @Component({
     selector: 'app-map',
@@ -54,7 +56,10 @@ export class MapComponent implements OnInit {
 
     constructor(
         private markerService: MarkerService,
-        private countriesService: CountriesService
+        private countriesService: CountriesService,
+        private resolver: ComponentFactoryResolver,
+        private injector: Injector,
+        private appRef: ApplicationRef
     ) {
     this.iconDefault = L.icon({
             iconRetinaUrl: this.iconRetinaUrl,
@@ -129,11 +134,11 @@ export class MapComponent implements OnInit {
                 res.features.forEach((el: any) => {
                     switch (el.properties.type) {
                         case events.EventsEnum.concert:
-                            const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(el.properties.label);
+                            const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(this.createPopupComponent(el.properties)).openPopup();
                             this.concertGroup.push(concert);
                             break;
                         case events.EventsEnum.boardgames:
-                            const boardgames = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(el.properties.label);
+                            const boardgames = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(this.createPopupComponent(el.properties)).openPopup();
                             this.boardgamesGroup.push(boardgames);
                             break;
                         default: throw new Error('No such types!');
@@ -158,6 +163,23 @@ export class MapComponent implements OnInit {
 
                 this.layerControl = L.control.layers(undefined, this.overlayMaps).addTo(this.map);
             })
+    }
+
+    /**
+     * shows a popup with event description for a clicked marker
+     * @param event
+     * @private
+     */
+    private createPopupComponent(event: EventInterface): HTMLElement {
+        const factory = this.resolver.resolveComponentFactory(PopupComponent);
+        const componentRef = factory.create(this.injector);
+
+        componentRef.instance.event = event;
+
+        this.appRef.attachView(componentRef.hostView);
+
+        const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+        return domElem;
     }
 
 }

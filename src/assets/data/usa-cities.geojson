@@ -25,6 +25,7 @@
                 "street": "5th Avenue",
                 "house": "12"
             },
+        "place": "Drunk bar",
         "date": "2024-03-01T10:05:08+01:00"
       }
     },
@@ -52,6 +53,7 @@
                       "street": "Main street",
                       "house": "10"
                   },
+              "place": "Time cafe and more",
               "date": "2024-01-01T10:05:08+01:00"
             }
     },
@@ -79,6 +81,7 @@
                       "street": "Lt. Mnt. Braids",
                       "house": "99"
                   },
+              "place": "Bar 'Titty Twister'",
               "date": "2024-08-01T10:05:08+01:00"
             }
     }

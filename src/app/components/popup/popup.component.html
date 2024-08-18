@@ -1,0 +1,14 @@
+<h1>{{event.label}}</h1>
+<p>
+    {{event.description}}
+</p>
+<p><strong>Host: </strong>{{ event.host.name }} {{event.host.surname}}</p>
+<p><strong>Date: </strong> {{event.date | date }}</p>
+<p><strong>Time: </strong> {{event.time }}</p>
+<p><strong>Venue: </strong> {{event.place}}</p>
+<p><strong>Admission: </strong> {{event.price ? event.price : 'Free' }}</p>
+<p><strong>Free seats: </strong> {{event.guestsAmount}} </p>
+<div class="display-f">
+    <button class="btn btn-success">Join</button>
+    <button class="btn btn-secondary">Changed my mind</button>
+</div>
