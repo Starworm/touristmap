@@ -5,3 +5,52 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.leaflet-top {
+    top: 80px;
+}
+/* Основной контейнер для элемента управления слоями */
+.leaflet-control-layers {
+    background-color: #333; /* Темный фон */
+    color: white; /* Белый цвет текста */
+    border-radius: 5px; /* Скругленные углы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Тень */
+}
+
+/* Кнопка переключения меню слоев */
+.leaflet-retina .leaflet-control-layers-toggle {
+    background-image: url('assets/images/button.jpeg'); /* Замена иконки */
+    background-size: contain; /* Настройка размера иконки */
+    width: 30px; /* Ширина кнопки */
+    height: 30px; /* Высота кнопки */
+    border-radius: 50%; /* Круглая форма */
+    background-color: #4CAF50; /* Зеленый фон */
+    border: 2px solid white; /* Белая граница */
+}
+
+/* Список слоев */
+.leaflet-control-layers-list {
+    background-color: #444; /* Темный фон списка */
+    color: white; /* Белый цвет текста */
+    border-radius: 5px; /* Скругленные углы */
+    padding: 10px; /* Внутренние отступы */
+}
+
+/* Элементы списка */
+.leaflet-control-layers-list label {
+    font-size: 14px; /* Размер шрифта */
+    margin-bottom: 5px; /* Отступ между элементами */
+}
+
+/* Стилизация при развернутом меню */
+.leaflet-control-layers-expanded {
+    max-height: 200px; /* Максимальная высота списка */
+    overflow-y: auto; /* Скролл при необходимости */
+}
+
+/* Индивидуальные стили для чекбоксов и радиокнопок */
+.leaflet-control-layers-list input[type="checkbox"],
+.leaflet-control-layers-list input[type="radio"] {
+    margin-right: 5px; /* Отступ справа от кнопки */
+    accent-color: #4CAF50; /* Цвет кнопки */
+}
