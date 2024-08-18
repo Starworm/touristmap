@@ -3,6 +3,16 @@
         [countryList]="countryList"
         (selectedCountry)="zoomToCountry($event)">
     </app-country-selector>
+    <div class="dropdown personal-account">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            User
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">My Events</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
+    </div>
     <div class="map-container">
         <div class="map-frame">
             <div id="map"></div>

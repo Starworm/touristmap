@@ -9,6 +9,10 @@
 <p><strong>Admission: </strong> {{event.price ? event.price : 'Free' }}</p>
 <p><strong>Free seats: </strong> {{event.guestsAmount}} </p>
 <div class="display-f">
-    <button class="btn btn-success">Join</button>
-    <button class="btn btn-secondary">Changed my mind</button>
+    <button class="btn btn-success"
+            [disabled]="!isJoinedToEvent"
+            (click)="addToMyEvent(event)">{{buttonJoinText}}</button>
+    <button class="btn btn-secondary"
+            [disabled]="isJoinedToEvent"
+            (click)="removeFromMyEvent(event)">Changed my mind</button>
 </div>
