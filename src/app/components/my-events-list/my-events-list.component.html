@@ -1,1 +1,28 @@
-<p>my-events-list works!</p>
+<h1>My Event list</h1>
+<div class="container mt-4">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Event name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Event type</th>
+            <th scope="col">Place</th>
+            <th scope="col">Other</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let event of myEvents; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ event.label }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.time }}</td>
+            <td>{{ event.type }}</td>
+            <td>{{ event.place }}</td>
+            <td><button class="btn btn-danger" (click)="refuse(event)">Changed My Mind</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<button class="btn btn-primary" (click)="toMap()">To the map</button>

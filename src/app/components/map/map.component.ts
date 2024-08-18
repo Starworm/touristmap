@@ -7,6 +7,7 @@ import 'leaflet.featuregroup.subgroup';
 import * as events from '../../enums/eventsEnum';
 import {PopupComponent} from "../popup/popup.component";
 import {EventInterface} from "../../interfaces/event.interface";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-map',
@@ -59,7 +60,8 @@ export class MapComponent implements OnInit {
         private countriesService: CountriesService,
         private resolver: ComponentFactoryResolver,
         private injector: Injector,
-        private appRef: ApplicationRef
+        private appRef: ApplicationRef,
+        private router: Router
     ) {
     this.iconDefault = L.icon({
             iconRetinaUrl: this.iconRetinaUrl,
@@ -182,4 +184,7 @@ export class MapComponent implements OnInit {
         return domElem;
     }
 
+    toMyEvents() {
+        this.router.navigate(['my-events']);
+    }
 }

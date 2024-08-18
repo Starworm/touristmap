@@ -16,6 +16,10 @@
     z-index: 100;
 }
 
+.dropdown-item:hover {
+    cursor: pointer;
+}
+
 .map-container {
     position: absolute;
     top: 30px;
