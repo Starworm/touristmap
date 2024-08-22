@@ -7,7 +7,7 @@ import {CountryInterface} from "../interfaces/country.interface";
 })
 export class CountriesService {
 
-    public countries: CountryInterface[] = [
+    countries: CountryInterface[] = [
         {id: 1, name: 'United States', lat: 37.0902, lon: -95.7129, zoom: 5},
         {id: 2, name: 'Canada', lat: 56.1304, lon: -106.3468, zoom: 5},
         {id: 3, name: 'United Kingdom', lat: 55.3781, lon: -3.4360, zoom: 6},
@@ -19,7 +19,7 @@ export class CountriesService {
     /**
      * returns list of countries from backend
      */
-    public getCountries(): Observable<CountryInterface[]> {
+    getCountries(): Observable<CountryInterface[]> {
         return of(this.countries);
     }
 }

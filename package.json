@@ -7,7 +7,8 @@
     "start:nlr": "ng serve --no-live-reload",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +28,6 @@
     "@popperjs/core": "^2.11.6",
     "@types/leaflet.markercluster": "^1.5.4",
     "bootstrap": "^5.2.3",
-    "eslint": "^9.7.0",
     "leaflet": "^1.9.4",
     "leaflet.featuregroup.subgroup": "^1.0.2",
     "leaflet.markercluster": "^1.5.3",
@@ -41,14 +41,19 @@
     "@angular/cli": "~18.1.0",
     "@angular/compiler-cli": "^18.1.0",
     "@angular/localize": "^18.1.0",
+    "@eslint/js": "^9.9.0",
     "@types/jasmine": "~4.3.0",
     "@types/leaflet": "^1.9.12",
+    "angular-eslint": "18.3.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.1.0"
   }
 }

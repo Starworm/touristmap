@@ -16,6 +16,12 @@ import {Router} from "@angular/router";
 })
 export class MapComponent implements OnInit {
 
+    /** list of countries */
+    countryList: any;
+    /** ????  */
+    concerts: any;
+    boardgames: any;
+
     private iconRetinaUrl = 'assets/marker-icon-2x.png';
     private iconUrl = 'assets/marker-icon.png';
     private shadowUrl = 'assets/marker-shadow.png';
@@ -23,8 +29,6 @@ export class MapComponent implements OnInit {
 
     /** leaflet map object */
     private map: L.Map;
-    /** list of countries */
-    public countryList: any;
     /** leaflet cluster object */
     private markerClusterGroup: any;
 
@@ -37,12 +41,7 @@ export class MapComponent implements OnInit {
     private concertSubGroup: any;
     private boardgamesSubGroup: any;
 
-    /** ????  */
-    concerts: any;
-    boardgames: any;
-
     private layerControl: any;
-    tiles: any;
 
     // Initial map settings
     private LATITUDE_INIT = 0;
@@ -79,55 +78,14 @@ export class MapComponent implements OnInit {
         L.Marker.prototype.options.icon = this.iconDefault;
         this.initMap();
     }
-    /**
-     * map initialization
-     * @private
-     */
-    private initMap(): void {
-        // initial map position
-        this.countriesService.getCountries()
-            .subscribe((countries) => {
-                this.countryList = countries;
-                this.map = L.map('map', {
-                    center: [this.LATITUDE_INIT, this.LONGITUDE_INIT],
-                    zoom: this.ZOOM_INIT
-                });
-            })
-
-
-        // provider of map (currently OpenStreetMap)
-        const tiles = L.tileLayer(this.MAP_TEMPLATE, {
-            maxZoom: this.ZOOM_MAX,
-            minZoom: this.ZOOM_MIN,
-            attribution: this.MAP_ATTRIBUTES
-        });
-
-        tiles.addTo(this.map);
-    }
 
     /**
      * zooms to country when it is selected
      * @param coords - country's coordinates
      * @param zoomLevel - level of country's zoom
      */
-    public zoomToCountry(coords: any, zoomLevel: number = 5) {
+    zoomToCountry(coords: any, zoomLevel: number = 5) {
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
-        // if (this.markerClusterGroup) {
-        //     this.markerClusterGroup.clearLayers();
-        // }
-        // if (this.waterfalls) {
-        //     this.waterfalls.clearLayers();
-        // }
-        // if (this.monuments) {
-        //     this.monuments.clearLayers();
-        // }
-        // if (this.caves) {
-        //     this.caves.clearLayers();
-        // }
-        // if(this.layerControl) {
-        //     this.map.removeLayer(this.overlayMaps);
-        // }
-        // this.markerClusterGroup.current?.remove();
 
         this.markerService.getData(coords.id)
             .subscribe((res) => {
@@ -165,6 +123,32 @@ export class MapComponent implements OnInit {
 
                 this.layerControl = L.control.layers(undefined, this.overlayMaps).addTo(this.map);
             })
+    }
+
+    /**
+     * map initialization
+     * @private
+     */
+    private initMap(): void {
+        // initial map position
+        this.countriesService.getCountries()
+            .subscribe((countries) => {
+                this.countryList = countries;
+                this.map = L.map('map', {
+                    center: [this.LATITUDE_INIT, this.LONGITUDE_INIT],
+                    zoom: this.ZOOM_INIT
+                });
+            })
+
+
+        // provider of map (currently OpenStreetMap)
+        const tiles = L.tileLayer(this.MAP_TEMPLATE, {
+            maxZoom: this.ZOOM_MAX,
+            minZoom: this.ZOOM_MIN,
+            attribution: this.MAP_ATTRIBUTES
+        });
+
+        tiles.addTo(this.map);
     }
 
     /**

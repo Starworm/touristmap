@@ -16,7 +16,7 @@ export class EventsService {
      * adds an event to user's list
      * @param event
      */
-    public addToMyEvents(event: EventInterface) {
+    addToMyEvents(event: EventInterface) {
         this.myEventList.push(event);
     }
 
@@ -24,14 +24,14 @@ export class EventsService {
      * remove an event to user's list
      * @param event
      */
-    public removeFromMyEvents(event: EventInterface) {
+    removeFromMyEvents(event: EventInterface) {
         this.myEventList = this.myEventList.filter(el => el.id !== event.id);
     }
 
     /**
      * returns list of user's events
      */
-    public getMyEvents() {
+    getMyEvents() {
         return of(this.myEventList);
     }
 }

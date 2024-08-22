@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
     /** login form object */
-    public loginForm: FormGroup;
+    loginForm: FormGroup;
 
     constructor(
         private fb: FormBuilder,
@@ -30,7 +30,7 @@ export class LoginComponent {
     /**
      * handles login form
      */
-    public onSubmit() {
+    onSubmit() {
         if(this.loginForm.valid) {
             const { username, password } = this.loginForm.value;
             console.log('username', username);
@@ -42,7 +42,7 @@ export class LoginComponent {
     /**
      * navigates to reset password page
      */
-    public forgetPassword() {
+    forgetPassword() {
         this.router.navigate(['resetpassword']);
     }
 

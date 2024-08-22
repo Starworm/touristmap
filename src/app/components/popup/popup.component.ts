@@ -15,11 +15,11 @@ import {EventsService} from "../../services/events.service";
 export class PopupComponent implements OnInit {
     @Input() event: EventInterface;
     /** if user joined to event or not */
-    public isJoinedToEvent: boolean = false;
+    isJoinedToEvent: boolean = false;
     /** 'join' button's text */
-    public JOINED = 'Already joined';
-    public NOT_JOINED = 'Join';
-    public buttonJoinText = '';
+    JOINED = 'Already joined';
+    NOT_JOINED = 'Join';
+    buttonJoinText = '';
 
     constructor(
         private eventsService: EventsService

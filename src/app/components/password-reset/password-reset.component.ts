@@ -13,8 +13,8 @@ import {NgIf} from "@angular/common";
   styleUrl: './password-reset.component.scss'
 })
 export class PasswordResetComponent {
-    public resetForm: FormGroup;
-    public message: string | null = null;
+    resetForm: FormGroup;
+    message: string | null = null;
 
     constructor(
         private fb: FormBuilder
@@ -27,7 +27,7 @@ export class PasswordResetComponent {
     /**
      * sends pass reset request to backend
      */
-    public onSubmit() {
+    onSubmit() {
         if (this.resetForm.valid) {
             const email = this.resetForm.value.email;
             // TODO: send request to backend

@@ -9,7 +9,7 @@ import {SelectedCountryInterface} from "../../interfaces/selected-country.interf
 export class CountrySelectorComponent {
 
     /** list of countries for selector */
-    @Input() public countryList: any;
+    @Input() countryList: any;
     /** emitter of a selected country */
     @Output() private selectedCountry: EventEmitter<any> = new EventEmitter<any>();
 
@@ -17,7 +17,7 @@ export class CountrySelectorComponent {
      * emits selected value in country selector
      * @param event
      */
-    public onCountryChange(event: Event) {
+    onCountryChange(event: Event) {
         const selectedValue = (event.target as HTMLSelectElement).value;
         const result = selectedValue.split(',').map((coord: string) => parseFloat(coord));
         const selCountry: SelectedCountryInterface = {

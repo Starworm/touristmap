@@ -20,7 +20,7 @@ export class MarkerService {
      * returns list of country's attractions
      * @param id - country id
      */
-    public getData(id: number): Observable<any> {
+    getData(id: number): Observable<any> {
         switch (id) {
             case 1:
                 return this.http.get(this.usCities);

@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
 })
 export class MyEventsListComponent implements OnInit {
 
-    public myEvents: EventInterface[] = [];
+    myEvents: EventInterface[] = [];
 
     constructor(
         private eventsService: EventsService,
