@@ -8,7 +8,7 @@
                         <div class="form-group mb-3">
                             <label for="username">Username</label>
                             <input id="username" formControlName="username" type="text" class="form-control" placeholder="Enter your username" />
-                            <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger">
+                            <div *ngIf="loginForm.controls['username']?.invalid && loginForm.controls['username']?.touched" class="text-danger">
                                 Username is required.
                             </div>
                         </div>
@@ -16,7 +16,7 @@
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
                             <input id="password" formControlName="password" type="password" class="form-control" placeholder="Enter your password" />
-                            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                            <div *ngIf="loginForm.controls['password']?.invalid && loginForm.controls['password']?.touched" class="text-danger">
                                 Password is required and must be at least 6 characters.
                             </div>
                         </div>
