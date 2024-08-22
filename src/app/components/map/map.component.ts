@@ -4,7 +4,7 @@ import {MarkerService} from "../../services/marker.service";
 import {CountriesService} from "../../services/countries.service";
 import 'leaflet.markercluster';
 import 'leaflet.featuregroup.subgroup';
-import * as events from '../../enums/eventsEnum';
+import * as events from '../../enums/events.enum';
 import {PopupComponent} from "../popup/popup.component";
 import {EventInterface} from "../../interfaces/event.interface";
 import {Router} from "@angular/router";
@@ -85,7 +85,8 @@ export class MapComponent implements OnInit {
      * @param coords - country's coordinates
      * @param zoomLevel - level of country's zoom
      */
-    zoomToCountry(coords:CountryInterface, zoomLevel: number = 5) {
+    zoomToCountry(coords: CountryInterface, zoomLevel: number = 5) {
+        console.log(coords);
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
 
         this.markerService.getData(coords.id)

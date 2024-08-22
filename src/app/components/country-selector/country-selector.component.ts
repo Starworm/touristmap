@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SelectedCountryInterface} from "../../interfaces/selected-country.interface";
 import {CountryInterface} from "../../interfaces/country.interface";
+import * as titles from '../../enums/titles.enum';
 
 @Component({
     selector: 'app-country-selector',
@@ -9,6 +10,7 @@ import {CountryInterface} from "../../interfaces/country.interface";
 })
 export class CountrySelectorComponent {
 
+    titles = titles;
     /** list of countries for selector */
     @Input() countryList: CountryInterface[];
     /** emitter of a selected country */

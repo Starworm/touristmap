@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import * as titles from '../../enums/titles.enum';
 
 @Component({
   selector: 'app-password-reset',
@@ -15,7 +16,7 @@ import {NgIf} from "@angular/common";
 export class PasswordResetComponent {
     resetForm: FormGroup;
     message: string | null = null;
-
+    titles = titles;
     constructor(
         private fb: FormBuilder
     ) {

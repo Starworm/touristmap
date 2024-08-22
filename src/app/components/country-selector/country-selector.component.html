@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 class="title">Select the country</h3>
+    <h3 class="title">{{titles.TitlesEnum.selectCountry}}</h3>
     <select class="form-select selector" (change)="onCountryChange($event)">
         <option selected>Select</option>
         <option *ngFor="let country of countryList"

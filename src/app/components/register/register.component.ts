@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import * as titles from '../../enums/titles.enum';
 
 @Component({
     selector: 'app-register',
@@ -14,6 +15,7 @@ import {NgIf} from "@angular/common";
 })
 export class RegisterComponent {
     registrationForm: FormGroup;
+    titles = titles;
 
     constructor(
         private fb: FormBuilder

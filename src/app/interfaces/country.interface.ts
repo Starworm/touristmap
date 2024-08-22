@@ -5,7 +5,7 @@ export interface CountryInterface {
     /** country's id */
     id: number,
     /** country's name */
-    name: string,
+    name?: string,
     /** country's latitude coordinates */
     lat: number,
     /** country's longitude coordinates */

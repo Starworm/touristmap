@@ -3,6 +3,7 @@ import {EventsService} from "../../services/events.service";
 import {EventInterface} from "../../interfaces/event.interface";
 import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
+import * as titles from '../../enums/titles.enum';
 
 @Component({
     selector: 'app-my-events-list',
@@ -15,6 +16,7 @@ import {Router} from "@angular/router";
 })
 export class MyEventsListComponent implements OnInit {
 
+    titles = titles;
     myEvents: EventInterface[] = [];
 
     constructor(

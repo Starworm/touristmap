@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {Router} from "@angular/router";
+import * as titles from '../../enums/titles.enum';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,8 @@ import {Router} from "@angular/router";
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+    titles = titles;
     /** login form object */
     loginForm: FormGroup;
 
