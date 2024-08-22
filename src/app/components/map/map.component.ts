@@ -8,6 +8,8 @@ import * as events from '../../enums/eventsEnum';
 import {PopupComponent} from "../popup/popup.component";
 import {EventInterface} from "../../interfaces/event.interface";
 import {Router} from "@angular/router";
+import {CountryInterface} from "../../interfaces/country.interface";
+import {GeojsonObjectInterface} from "../../interfaces/geojson-object.interface";
 
 @Component({
     selector: 'app-map',
@@ -17,10 +19,10 @@ import {Router} from "@angular/router";
 export class MapComponent implements OnInit {
 
     /** list of countries */
-    countryList: any;
-    /** ????  */
-    concerts: any;
-    boardgames: any;
+    countryList: CountryInterface[];
+    /** Group layer for events  */
+    concerts:  L.LayerGroup<L.Map>;
+    boardgames:  L.LayerGroup<L.Map>;
 
     private iconRetinaUrl = 'assets/marker-icon-2x.png';
     private iconUrl = 'assets/marker-icon.png';
@@ -29,19 +31,18 @@ export class MapComponent implements OnInit {
 
     /** leaflet map object */
     private map: L.Map;
-    /** leaflet cluster object */
-    private markerClusterGroup: any;
 
     /** leaflet layer groups */
     private concertGroup: L.Layer[] = [];
     private boardgamesGroup: L.Layer[] = [];
     private overlayMaps: any;
 
-    /** ????? */
-    private concertSubGroup: any;
-    private boardgamesSubGroup: any;
+    /** Subgroups for precise events */
+    private concertSubGroup: L.FeatureGroup;
+    private boardgamesSubGroup: L.FeatureGroup;
 
-    private layerControl: any;
+    /** Layer control object for adding group of events to the map */
+    private layerControl: L.Control;
 
     // Initial map settings
     private LATITUDE_INIT = 0;
@@ -84,14 +85,14 @@ export class MapComponent implements OnInit {
      * @param coords - country's coordinates
      * @param zoomLevel - level of country's zoom
      */
-    zoomToCountry(coords: any, zoomLevel: number = 5) {
+    zoomToCountry(coords:CountryInterface, zoomLevel: number = 5) {
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
 
         this.markerService.getData(coords.id)
             .subscribe((res) => {
-                // this.markerClusterGroup = L.markerClusterGroup();
+                console.log(res);
 
-                res.features.forEach((el: any) => {
+                res.features.forEach((el: GeojsonObjectInterface) => {
                     switch (el.properties.type) {
                         case events.EventsEnum.concert:
                             const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(this.createPopupComponent(el.properties)).openPopup();

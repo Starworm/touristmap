@@ -23,5 +23,8 @@
             "extends": ["plugin:@angular-eslint/template/recommended"],
             "rules": {}
         }
-    ]
+    ],
+    "linterOptions": {
+        "reportUnusedDisableDirectives": true
+    }
 }
