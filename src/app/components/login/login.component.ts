@@ -45,11 +45,14 @@ export class LoginComponent {
     /**
      * navigates to reset password page
      */
-    forgetPassword() {
+    toResetPasswordPage() {
         this.router.navigate(['resetpassword']);
     }
 
-    newRegistration() {
+    /**
+     * navigates to registration page
+     */
+    toNewRegistrationPage() {
         this.router.navigate(['newuser']);
     }
 }

@@ -2,7 +2,6 @@
  * interface for a country from backend
  */
 export interface CountryInterface {
-    /** country's id */
     id: number,
     /** country's name */
     name?: string,

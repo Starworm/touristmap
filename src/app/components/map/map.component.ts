@@ -10,6 +10,7 @@ import {EventInterface} from "../../interfaces/event.interface";
 import {Router} from "@angular/router";
 import {CountryInterface} from "../../interfaces/country.interface";
 import {GeojsonObjectInterface} from "../../interfaces/geojson-object.interface";
+import {MapConstantsEnum} from "../../enums/map-constants.enum";
 
 @Component({
     selector: 'app-map',
@@ -45,11 +46,11 @@ export class MapComponent implements OnInit {
     private layerControl: L.Control;
 
     // Initial map settings
-    private LATITUDE_INIT = 0;
-    private LONGITUDE_INIT = 0;
-    private ZOOM_INIT = 3;
-    private ZOOM_MAX = 18;
-    private ZOOM_MIN = 3;
+    // private LATITUDE_INIT = 0;
+    // private LONGITUDE_INIT = 0;
+    // private ZOOM_INIT = 3;
+    // private ZOOM_MAX = 18;
+    // private ZOOM_MIN = 3;
 
     // Map's provider settings
     private MAP_TEMPLATE = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -137,16 +138,16 @@ export class MapComponent implements OnInit {
             .subscribe((countries) => {
                 this.countryList = countries;
                 this.map = L.map('map', {
-                    center: [this.LATITUDE_INIT, this.LONGITUDE_INIT],
-                    zoom: this.ZOOM_INIT
+                    center: [MapConstantsEnum.LATITUDE_INIT, MapConstantsEnum.LONGITUDE_INIT],
+                    zoom: MapConstantsEnum.ZOOM_INIT
                 });
             })
 
 
         // provider of map (currently OpenStreetMap)
         const tiles = L.tileLayer(this.MAP_TEMPLATE, {
-            maxZoom: this.ZOOM_MAX,
-            minZoom: this.ZOOM_MIN,
+            maxZoom: MapConstantsEnum.ZOOM_MAX,
+            minZoom: MapConstantsEnum.ZOOM_MIN,
             attribution: this.MAP_ATTRIBUTES
         });
 
@@ -170,7 +171,10 @@ export class MapComponent implements OnInit {
         return domElem;
     }
 
-    toMyEvents() {
+    /**
+     * navigates to My events page
+     */
+    toMyEventsPage() {
         this.router.navigate(['my-events']);
     }
 }

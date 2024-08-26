@@ -31,6 +31,10 @@ export class PopupComponent implements OnInit {
         this.getMyEvents();
     }
 
+    /**
+     * splits standard datetime string and highlights the time
+     * @param dateTime datetime string
+     */
     timeSplit(dateTime: string) {
         return dateTime.split('T')[1];
     }

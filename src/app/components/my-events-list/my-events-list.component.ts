@@ -36,7 +36,11 @@ export class MyEventsListComponent implements OnInit {
         this.router.navigate(['map']);
     }
 
-    refuse(event: EventInterface) {
+    /**
+     * cancels an event from user's schedule
+     * @param event - cancelled event
+     */
+    cancelEvent(event: EventInterface) {
         this.eventsService.removeFromMyEvents(event);
         this.getMyEvents();
     }
