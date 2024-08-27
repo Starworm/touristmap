@@ -11,9 +11,6 @@ export class CountriesService {
         {id: 3, name: 'United Kingdom', latitude: 55.3781, longitude: -3.4360, zoom: 6},
     ];
 
-    constructor() {
-    }
-
     /**
      * returns list of countries from backend
      */

@@ -7,8 +7,6 @@ export class EventsService {
 
     /** temporal local list of events that user joined to */
     myEventList: EventInterface[] = [];
-    constructor() {
-    }
 
     /**
      * adds an event to user's list
