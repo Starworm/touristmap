@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import {EventInterface} from "../interfaces/event.interface";
 import {of} from "rxjs";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class EventsService {
 
     /** temporal local list of events that user joined to */

@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {CountryInterface} from "../interfaces/country.interface";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class CountriesService {
 
     countries: CountryInterface[] = [

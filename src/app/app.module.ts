@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MapComponent} from './components/map/map.component';
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import {MarkerService} from "./services/marker.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +31,6 @@ import {RegisterComponent} from "./components/register/register.component";
         LeafletModule,
         RegisterComponent
     ], providers: [
-        MarkerService,
         provideHttpClient(withInterceptorsFromDi())
     ] })
 export class AppModule {

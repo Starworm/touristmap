@@ -6,13 +6,14 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {PopupConstantsEnum} from "../../enums/popup-constants.enum";
 
 @Component({
-  selector: 'app-popup',
-  standalone: true,
-    imports: [
-        DatePipe
-    ],
-  templateUrl: './popup.component.html',
-  styleUrl: './popup.component.scss'
+    selector: 'app-popup',
+    standalone: true,
+      imports: [
+          DatePipe
+      ],
+    templateUrl: './popup.component.html',
+    styleUrl: './popup.component.scss',
+    providers: [EventsService]
 })
 export class PopupComponent implements OnInit {
     @Input() event: EventInterface;

@@ -24,7 +24,11 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
-    styleUrls: ['./map.component.scss']
+    styleUrls: ['./map.component.scss'],
+    providers: [
+        CountriesService,
+        MarkerService
+    ]
 })
 export class MapComponent implements OnInit {
 

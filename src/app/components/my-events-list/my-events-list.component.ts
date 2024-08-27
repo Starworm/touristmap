@@ -13,7 +13,8 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
         NgForOf
     ],
     templateUrl: './my-events-list.component.html',
-    styleUrl: './my-events-list.component.scss'
+    styleUrl: './my-events-list.component.scss',
+    providers: [EventsService]
 })
 export class MyEventsListComponent implements OnInit {
 
