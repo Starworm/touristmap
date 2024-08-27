@@ -6,9 +6,9 @@ export interface CountryInterface {
     /** country's name */
     name?: string,
     /** country's latitude coordinates */
-    lat: number,
+    latitude: number,
     /** country's longitude coordinates */
-    lon: number,
+    longitude: number,
     /** zoom size to country */
     zoom: number
 }

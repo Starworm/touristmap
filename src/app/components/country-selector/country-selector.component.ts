@@ -24,8 +24,8 @@ export class CountrySelectorComponent {
         const selectedValue = (event.target as HTMLSelectElement).value;
         const result = selectedValue.split(',').map((coord: string) => parseFloat(coord));
         const selCountry: SelectedCountryInterface = {
-            lat: result[0],
-            lon: result[1],
+            latitude: result[0],
+            longitude: result[1],
             zoom: result[2],
             id: result[3]
         }

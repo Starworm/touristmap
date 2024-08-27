@@ -3,7 +3,7 @@
     <select class="form-select selector" (change)="onCountryChange($event)">
         <option selected>Select</option>
         @for (country of countryList; track country.id) {
-            <option [value]="country.lat + ',' + country.lon + ',' + country.zoom + ',' + country.id">{{country.name}}</option>
+            <option [value]="country.latitude + ',' + country.longitude + ',' + country.zoom + ',' + country.id">{{country.name}}</option>
         }
     </select>
 </div>
