@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import {EventInterface} from "../../interfaces/event.interface";
 import {DatePipe} from "@angular/common";
 import {EventsService} from "../../services/events.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {PopupConstantsEnum} from "../../enums/popup-constants.enum";
 
 @Component({
   selector: 'app-popup',
@@ -16,10 +18,9 @@ export class PopupComponent implements OnInit {
     @Input() event: EventInterface;
     /** if user joined to event or not */
     isJoinedToEvent: boolean = false;
-    /** 'join' button's text */
-    JOINED = 'Already joined';
-    NOT_JOINED = 'Join';
     buttonJoinText = '';
+
+    private destroyRef = inject(DestroyRef);
 
     constructor(
         private eventsService: EventsService
@@ -63,9 +64,12 @@ export class PopupComponent implements OnInit {
      */
     getMyEvents() {
         this.eventsService.getMyEvents()
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
             .subscribe(res => {
                 this.isJoinedToEvent = res.find(el => el.id === this.event.id) === undefined;
-                this.buttonJoinText = this.isJoinedToEvent ? this.NOT_JOINED : this.JOINED;
+                this.buttonJoinText = this.isJoinedToEvent ? PopupConstantsEnum.NOT_JOINED : PopupConstantsEnum.JOINED;
             })
     }
 }

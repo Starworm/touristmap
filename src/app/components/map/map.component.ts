@@ -1,4 +1,12 @@
-import {ApplicationRef, Component, ComponentFactoryResolver, EmbeddedViewRef, Injector, OnInit} from '@angular/core';
+import {
+    ApplicationRef,
+    Component,
+    ComponentFactoryResolver, DestroyRef,
+    EmbeddedViewRef,
+    inject,
+    Injector,
+    OnInit
+} from '@angular/core';
 import * as L from 'leaflet';
 import {MarkerService} from "../../services/marker.service";
 import {CountriesService} from "../../services/countries.service";
@@ -11,6 +19,7 @@ import {Router} from "@angular/router";
 import {CountryInterface} from "../../interfaces/country.interface";
 import {GeojsonObjectInterface} from "../../interfaces/geojson-object.interface";
 import {MapConstantsEnum} from "../../enums/map-constants.enum";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'app-map',
@@ -30,6 +39,8 @@ export class MapComponent implements OnInit {
     private shadowUrl = 'assets/marker-shadow.png';
     private iconDefault: L.Icon<L.IconOptions>;
 
+    private destroyRef = inject(DestroyRef);
+
     /** leaflet map object */
     private map: L.Map;
 
@@ -44,13 +55,6 @@ export class MapComponent implements OnInit {
 
     /** Layer control object for adding group of events to the map */
     private layerControl: L.Control;
-
-    // Initial map settings
-    // private LATITUDE_INIT = 0;
-    // private LONGITUDE_INIT = 0;
-    // private ZOOM_INIT = 3;
-    // private ZOOM_MAX = 18;
-    // private ZOOM_MIN = 3;
 
     // Map's provider settings
     private MAP_TEMPLATE = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -68,11 +72,11 @@ export class MapComponent implements OnInit {
             iconRetinaUrl: this.iconRetinaUrl,
             iconUrl: this.iconUrl,
             shadowUrl: this.shadowUrl,
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            tooltipAnchor: [16, -28],
-            shadowSize: [41, 41]
+            iconSize: [MapConstantsEnum.ICON_SIZE_WIDTH, MapConstantsEnum.ICON_SIZE_HEIGHT],
+            iconAnchor: [MapConstantsEnum.ICON_ANCHOR_WIDTH, MapConstantsEnum.ICON_ANCHOR_HEIGHT],
+            popupAnchor: [MapConstantsEnum.POPUP_ANCHOR_X, MapConstantsEnum.POPUP_ANCHOR_Y],
+            tooltipAnchor: [MapConstantsEnum.TOOLTIP_ANCHOR_X, MapConstantsEnum.TOOLTIP_ANCHOR_Y],
+            shadowSize: [MapConstantsEnum.SHADOW_SIZE_WIDTH, MapConstantsEnum.SHADOW_SIZE_HEIGHT]
         });
     }
 
@@ -91,6 +95,9 @@ export class MapComponent implements OnInit {
         this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
 
         this.markerService.getData(coords.id)
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
             .subscribe((res) => {
                 console.log(res);
 
@@ -135,6 +142,9 @@ export class MapComponent implements OnInit {
     private initMap(): void {
         // initial map position
         this.countriesService.getCountries()
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
             .subscribe((countries) => {
                 this.countryList = countries;
                 this.map = L.map('map', {

@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {EventsService} from "../../services/events.service";
 import {EventInterface} from "../../interfaces/event.interface";
 import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
 import * as titles from '../../enums/titles.enum';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
     selector: 'app-my-events-list',
@@ -18,6 +19,8 @@ export class MyEventsListComponent implements OnInit {
 
     titles = titles;
     myEvents: EventInterface[] = [];
+
+    private destroyRef = inject(DestroyRef);
 
     constructor(
         private eventsService: EventsService,
@@ -50,6 +53,9 @@ export class MyEventsListComponent implements OnInit {
      */
     getMyEvents() {
         this.eventsService.getMyEvents()
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
             .subscribe(res => {
                 this.myEvents = res;
             })
