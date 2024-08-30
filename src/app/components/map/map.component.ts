@@ -1,7 +1,8 @@
 import {
     ApplicationRef,
     Component,
-    ComponentFactoryResolver, DestroyRef,
+    ComponentFactoryResolver,
+    DestroyRef,
     EmbeddedViewRef,
     inject,
     Injector,

@@ -1,8 +1,16 @@
 <div class="container">
-    <app-country-selector class="country-selector"
-        [countryList]="countryList"
-        (selectedCountry)="zoomToCountry($event)">
-    </app-country-selector>
+    <div class="dropdown country-selector">
+        <button class="btn btn-secondary dropdown-toggle"
+                type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+            Select country]
+        </button>
+        <ul class="dropdown-menu">
+            @for (country of countryList; track country.id) {
+            <li class="dropdown-item" (click)="zoomToCountry(country)">{{country.name}}</li>
+            }
+        </ul>
+    </div>
     <div class="dropdown personal-account">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             User
