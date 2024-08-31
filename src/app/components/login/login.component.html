@@ -8,9 +8,9 @@
                         <div class="form-group mb-3">
                             <label for="username">Username</label>
                             <input id="username" formControlName="username" type="text" class="form-control" placeholder="Enter your username" />
-                            @if (!loginForm.controls.username.valid && loginForm.controls.username.touched) {
+                            @if (!loginForm.controls['username'].valid && loginForm.controls['username'].touched) {
                                 <div class="text-danger">
-                                    Username is required.
+                                    {{HtmlMessagesEnum.requireUsername}}
                                 </div>
                             }
                         </div>
@@ -18,9 +18,9 @@
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
                             <input id="password" formControlName="password" type="password" class="form-control" placeholder="Enter your password" />
-                            @if (!loginForm.controls.password.valid && loginForm.controls.password.touched) {
+                            @if (!loginForm.controls['password'].valid && loginForm.controls['password'].touched) {
                                 <div class="text-danger">
-                                    Password is required and must be at least 6 characters.
+                                    {{HtmlMessagesEnum.requirePassword}}
                                 </div>
                             }
                         </div>

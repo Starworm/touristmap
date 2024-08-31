@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import * as titles from '../../enums/titles.enum';
+import {HtmlMessagesEnum} from "../../enums/html-messages.enum";
 
 @Component({
   selector: 'app-password-reset',
@@ -17,6 +18,8 @@ export class PasswordResetComponent {
     resetForm: FormGroup;
     message: string | null = null;
     titles = titles;
+    readonly HtmlMessagesEnum = HtmlMessagesEnum;
+
     constructor(
         private fb: FormBuilder
     ) {

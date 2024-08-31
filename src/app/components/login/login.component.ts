@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import * as titles from '../../enums/titles.enum';
+import {HtmlMessagesEnum} from "../../enums/html-messages.enum";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import * as titles from '../../enums/titles.enum';
 })
 export class LoginComponent {
 
+    readonly HtmlMessagesEnum = HtmlMessagesEnum;
     titles = titles;
     /** login form object */
     loginForm: FormGroup;

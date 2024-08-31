@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import * as titles from '../../enums/titles.enum';
+import {HtmlMessagesEnum} from "../../enums/html-messages.enum";
 
 @Component({
     selector: 'app-register',
@@ -16,6 +17,7 @@ import * as titles from '../../enums/titles.enum';
 export class RegisterComponent {
     registrationForm: FormGroup;
     titles = titles;
+    readonly HtmlMessagesEnum = HtmlMessagesEnum;
 
     constructor(
         private fb: FormBuilder

@@ -16,9 +16,9 @@
                                 formControlName="name"
                                 placeholder="Enter your name"
                             />
-                            @if (registrationForm.controls.name.invalid && registrationForm.controls.name.touched) {
+                            @if (registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched) {
                                 <div class="text-danger">
-                                    Name is required.
+                                    {{HtmlMessagesEnum.requireName}}
                                 </div>
                             }
                         </div>
@@ -32,10 +32,10 @@
                                 formControlName="surname"
                                 placeholder="Enter your surname"
                             />
-                            @if (registrationForm.controls.surname.invalid && registrationForm.controls.surname.touched) {
+                            @if (registrationForm.controls['surname'].invalid && registrationForm.controls['surname'].touched) {
                                 <div class="text-danger">
-                                    Surname is required.
-                                </div>
+                                    {{HtmlMessagesEnum.requireSurname}}
+                            </div>
                             }
                         </div>
 
@@ -48,15 +48,15 @@
                                 formControlName="age"
                                 placeholder="Enter your age"
                             />
-                            @if (registrationForm.controls.age.invalid && registrationForm.controls.age.touched) {
-                            <div class="text-danger">
-                                Please enter a valid age.
-                            </div>
+                            @if (registrationForm.controls['age'].invalid && registrationForm.controls['age'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireAge}}
+                                </div>
                             }
                         </div>
 
                         <div class="mb-3">
-                            <label for="nickname" class="form-label">Nickname</label>
+                            <label for="nickname" class="form-label">Username</label>
                             <input
                                 type="text"
                                 id="nickname"
@@ -64,9 +64,9 @@
                                 formControlName="nickname"
                                 placeholder="Enter your nickname"
                             />
-                            @if (registrationForm.controls.nickname.invalid && registrationForm.controls.nickname.touched) {
+                            @if (registrationForm.controls['nickname'].invalid && registrationForm.controls['nickname'].touched) {
                                 <div class="text-danger">
-                                    Nickname is required.
+                                    {{HtmlMessagesEnum.requireUsername}}
                                 </div>
                             }
                         </div>
@@ -80,9 +80,9 @@
                                 formControlName="country"
                                 placeholder="Enter your country"
                             />
-                            @if (registrationForm.controls.country.invalid && registrationForm.controls.country.touched) {
+                            @if (registrationForm.controls['country'].invalid && registrationForm.controls['country'].touched) {
                                 <div class="text-danger">
-                                    Country is required.
+                                    {{HtmlMessagesEnum.requireCountry}}
                                 </div>
                             }
                         </div>
@@ -96,9 +96,9 @@
                                 formControlName="city"
                                 placeholder="Enter your city"
                             />
-                            @if (registrationForm.controls.city.invalid && registrationForm.controls.city.touched) {
+                            @if (registrationForm.controls['city'].invalid && registrationForm.controls['city'].touched) {
                                 <div class="text-danger">
-                                    City is required.
+                                    {{HtmlMessagesEnum.requireCity}}
                                 </div>
                             }
                         </div>
@@ -112,9 +112,9 @@
                                 formControlName="email"
                                 placeholder="Enter your email"
                             />
-                            @if (registrationForm.controls.email.invalid && registrationForm.controls.email.touched) {
+                            @if (registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched) {
                                 <div class="text-danger">
-                                    Please enter a valid email address.
+                                    {{HtmlMessagesEnum.requireEmail}}
                                 </div>
                             }
                         </div>
@@ -128,9 +128,9 @@
                                 formControlName="phone"
                                 placeholder="Enter your mobile phone"
                             />
-                            @if (registrationForm.controls.phone.invalid && registrationForm.controls.phone.touched) {
+                            @if (registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].touched) {
                                 <div class="text-danger">
-                                    Please enter a valid phone number.
+                                    {{HtmlMessagesEnum.requirePhone}}
                                 </div>
                             }
                         </div>
