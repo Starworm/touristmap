@@ -4,6 +4,7 @@ import {NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import * as titles from '../../enums/titles.enum';
 import {HtmlMessagesEnum} from "../../enums/html-messages.enum";
+import {APP_ROUTES} from "../../app.routes";
 
 @Component({
   selector: 'app-login',
@@ -48,13 +49,13 @@ export class LoginComponent {
      * navigates to reset password page
      */
     toResetPasswordPage() {
-        this.router.navigate(['resetpassword']);
+        this.router.navigate([APP_ROUTES.resetPassword]);
     }
 
     /**
      * navigates to registration page
      */
     toNewRegistrationPage() {
-        this.router.navigate(['newuser']);
+        this.router.navigate([APP_ROUTES.newUser]);
     }
 }

@@ -21,6 +21,7 @@ import {CountryInterface} from "../../interfaces/country.interface";
 import {GeojsonObjectInterface} from "../../interfaces/geojson-object.interface";
 import {MapConstantsEnum} from "../../enums/map-constants.enum";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {APP_ROUTES} from "../../app.routes";
 
 @Component({
     selector: 'app-map',
@@ -190,6 +191,6 @@ export class MapComponent implements OnInit {
      * navigates to My events page
      */
     toMyEventsPage() {
-        this.router.navigate(['my-events']);
+        this.router.navigate([APP_ROUTES.myEvents]);
     }
 }

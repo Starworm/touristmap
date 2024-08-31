@@ -5,6 +5,7 @@ import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
 import * as titles from '../../enums/titles.enum';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {APP_ROUTES} from "../../app.routes";
 
 @Component({
     selector: 'app-my-events-list',
@@ -37,7 +38,7 @@ export class MyEventsListComponent implements OnInit {
      * returns to map
      */
     toMap() {
-        this.router.navigate(['map']);
+        this.router.navigate([APP_ROUTES.map]);
     }
 
     /**
