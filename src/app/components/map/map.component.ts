@@ -98,7 +98,7 @@ export class MapComponent implements OnInit {
      */
     zoomToCountry(coords: CountryInterface, zoomLevel: number = 5) {
         console.log(coords);
-        this.map.setView([coords.latitude, coords.longitude], coords.zoom ? coords.zoom : zoomLevel);
+        this.map.setView([coords.latitude, coords.longitude], coords.zoom ?? zoomLevel);
 
         this.markerService.getData(coords.id)
             .pipe(
