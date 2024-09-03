@@ -1,59 +1,71 @@
-import {ApplicationRef, Component, ComponentFactoryResolver, EmbeddedViewRef, Injector, OnInit} from '@angular/core';
+import {
+    ApplicationRef,
+    Component,
+    ComponentFactoryResolver,
+    DestroyRef,
+    EmbeddedViewRef,
+    inject,
+    Injector,
+    OnInit
+} from '@angular/core';
 import * as L from 'leaflet';
 import {MarkerService} from "../../services/marker.service";
 import {CountriesService} from "../../services/countries.service";
 import 'leaflet.markercluster';
 import 'leaflet.featuregroup.subgroup';
-import * as events from '../../enums/eventsEnum';
+import * as events from '../../enums/events.enum';
 import {PopupComponent} from "../popup/popup.component";
 import {EventInterface} from "../../interfaces/event.interface";
 import {Router} from "@angular/router";
+import {CountryInterface} from "../../interfaces/country.interface";
+import {GeojsonObjectInterface} from "../../interfaces/geojson-object.interface";
+import {MapConstantsEnum} from "../../enums/map-constants.enum";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {APP_ROUTES} from "../../app.routes";
 
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
-    styleUrls: ['./map.component.scss']
+    styleUrls: ['./map.component.scss'],
+    providers: [
+        CountriesService,
+        MarkerService
+    ]
 })
 export class MapComponent implements OnInit {
+
+    /** list of countries */
+    countryList: CountryInterface[];
+    /** Group layer for events  */
+    concerts:  L.LayerGroup<L.Map>;
+    boardgames:  L.LayerGroup<L.Map>;
 
     private iconRetinaUrl = 'assets/marker-icon-2x.png';
     private iconUrl = 'assets/marker-icon.png';
     private shadowUrl = 'assets/marker-shadow.png';
     private iconDefault: L.Icon<L.IconOptions>;
 
+    private destroyRef = inject(DestroyRef);
+
     /** leaflet map object */
     private map: L.Map;
-    /** list of countries */
-    public countryList: any;
-    /** leaflet cluster object */
-    private markerClusterGroup: any;
 
     /** leaflet layer groups */
     private concertGroup: L.Layer[] = [];
     private boardgamesGroup: L.Layer[] = [];
     private overlayMaps: any;
 
-    /** ????? */
-    private concertSubGroup: any;
-    private boardgamesSubGroup: any;
+    /** Subgroups for precise events */
+    private concertSubGroup: L.FeatureGroup;
+    private boardgamesSubGroup: L.FeatureGroup;
 
-    /** ????  */
-    concerts: any;
-    boardgames: any;
-
-    private layerControl: any;
-    tiles: any;
-
-    // Initial map settings
-    private LATITUDE_INIT = 0;
-    private LONGITUDE_INIT = 0;
-    private ZOOM_INIT = 3;
-    private ZOOM_MAX = 18;
-    private ZOOM_MIN = 3;
+    /** Layer control object for adding group of events to the map */
+    private layerControl: L.Control;
 
     // Map's provider settings
     private MAP_TEMPLATE = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     private MAP_ATTRIBUTES = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+    private providerMap = 'openStreetMap';
 
     constructor(
         private markerService: MarkerService,
@@ -67,42 +79,17 @@ export class MapComponent implements OnInit {
             iconRetinaUrl: this.iconRetinaUrl,
             iconUrl: this.iconUrl,
             shadowUrl: this.shadowUrl,
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            tooltipAnchor: [16, -28],
-            shadowSize: [41, 41]
+            iconSize: [MapConstantsEnum.ICON_SIZE_WIDTH, MapConstantsEnum.ICON_SIZE_HEIGHT],
+            iconAnchor: [MapConstantsEnum.ICON_ANCHOR_WIDTH, MapConstantsEnum.ICON_ANCHOR_HEIGHT],
+            popupAnchor: [MapConstantsEnum.POPUP_ANCHOR_X, MapConstantsEnum.POPUP_ANCHOR_Y],
+            tooltipAnchor: [MapConstantsEnum.TOOLTIP_ANCHOR_X, MapConstantsEnum.TOOLTIP_ANCHOR_Y],
+            shadowSize: [MapConstantsEnum.SHADOW_SIZE_WIDTH, MapConstantsEnum.SHADOW_SIZE_HEIGHT]
         });
     }
 
     ngOnInit() {
         L.Marker.prototype.options.icon = this.iconDefault;
-        this.initMap();
-    }
-    /**
-     * map initialization
-     * @private
-     */
-    private initMap(): void {
-        // initial map position
-        this.countriesService.getCountries()
-            .subscribe((countries) => {
-                this.countryList = countries;
-                this.map = L.map('map', {
-                    center: [this.LATITUDE_INIT, this.LONGITUDE_INIT],
-                    zoom: this.ZOOM_INIT
-                });
-            })
-
-
-        // provider of map (currently OpenStreetMap)
-        const tiles = L.tileLayer(this.MAP_TEMPLATE, {
-            maxZoom: this.ZOOM_MAX,
-            minZoom: this.ZOOM_MIN,
-            attribution: this.MAP_ATTRIBUTES
-        });
-
-        tiles.addTo(this.map);
+        this.initMap(this.providerMap);
     }
 
     /**
@@ -110,30 +97,18 @@ export class MapComponent implements OnInit {
      * @param coords - country's coordinates
      * @param zoomLevel - level of country's zoom
      */
-    public zoomToCountry(coords: any, zoomLevel: number = 5) {
-        this.map.setView([coords.lat, coords.lon], coords.zoom ? coords.zoom : zoomLevel);
-        // if (this.markerClusterGroup) {
-        //     this.markerClusterGroup.clearLayers();
-        // }
-        // if (this.waterfalls) {
-        //     this.waterfalls.clearLayers();
-        // }
-        // if (this.monuments) {
-        //     this.monuments.clearLayers();
-        // }
-        // if (this.caves) {
-        //     this.caves.clearLayers();
-        // }
-        // if(this.layerControl) {
-        //     this.map.removeLayer(this.overlayMaps);
-        // }
-        // this.markerClusterGroup.current?.remove();
+    zoomToCountry(coords: CountryInterface, zoomLevel: number = 5) {
+        console.log(coords);
+        this.map.setView([coords.latitude, coords.longitude], coords.zoom ?? zoomLevel);
 
         this.markerService.getData(coords.id)
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
             .subscribe((res) => {
-                // this.markerClusterGroup = L.markerClusterGroup();
+                console.log(res);
 
-                res.features.forEach((el: any) => {
+                res.features.forEach((el: GeojsonObjectInterface) => {
                     switch (el.properties.type) {
                         case events.EventsEnum.concert:
                             const concert = L.marker([el.geometry.coordinates[1], el.geometry.coordinates[0]]).bindPopup(this.createPopupComponent(el.properties)).openPopup();
@@ -168,6 +143,37 @@ export class MapComponent implements OnInit {
     }
 
     /**
+     * map initialization
+     * @private
+     */
+    private initMap(providerKey: string): void {
+        // initial map position
+        this.countriesService.getCountries()
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
+            .subscribe((countries) => {
+                this.countryList = countries;
+                this.map = L.map('map', {
+                    center: [MapConstantsEnum.LATITUDE_INIT, MapConstantsEnum.LONGITUDE_INIT],
+                    zoom: MapConstantsEnum.ZOOM_INIT
+                });
+            })
+
+        let tiles: L.TileLayer;
+        switch (providerKey) {
+            case 'openStreetMap':
+                // provider of map (currently OpenStreetMap)
+                tiles = L.tileLayer(this.MAP_TEMPLATE, {
+                    maxZoom: MapConstantsEnum.ZOOM_MAX,
+                    minZoom: MapConstantsEnum.ZOOM_MIN,
+                    attribution: this.MAP_ATTRIBUTES
+                });
+                tiles.addTo(this.map);
+        }
+    }
+
+    /**
      * shows a popup with event description for a clicked marker
      * @param event
      * @private
@@ -184,7 +190,10 @@ export class MapComponent implements OnInit {
         return domElem;
     }
 
-    toMyEvents() {
-        this.router.navigate(['my-events']);
+    /**
+     * navigates to My events page
+     */
+    toMyEventsPage() {
+        this.router.navigate([APP_ROUTES.myEvents]);
     }
 }

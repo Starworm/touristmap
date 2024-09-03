@@ -3,7 +3,7 @@
         <div class="col-md-8">
             <div class="card mt-5">
                 <div class="card-header text-center">
-                    <h3>Registration Form</h3>
+                    <h3>{{titles.TitlesEnum.registration}}</h3>
                 </div>
                 <div class="card-body">
                     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
@@ -16,9 +16,11 @@
                                 formControlName="name"
                                 placeholder="Enter your name"
                             />
-                            <div *ngIf="registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched" class="text-danger">
-                                Name is required.
-                            </div>
+                            @if (registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireName}}
+                                </div>
+                            }
                         </div>
 
                         <div class="mb-3">
@@ -30,9 +32,11 @@
                                 formControlName="surname"
                                 placeholder="Enter your surname"
                             />
-                            <div *ngIf="registrationForm.controls['surname'].invalid && registrationForm.controls['surname'].touched" class="text-danger">
-                                Surname is required.
+                            @if (registrationForm.controls['surname'].invalid && registrationForm.controls['surname'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireSurname}}
                             </div>
+                            }
                         </div>
 
                         <div class="mb-3">
@@ -44,13 +48,15 @@
                                 formControlName="age"
                                 placeholder="Enter your age"
                             />
-                            <div *ngIf="registrationForm.controls['age'].invalid && registrationForm.controls['age'].touched" class="text-danger">
-                                Please enter a valid age.
-                            </div>
+                            @if (registrationForm.controls['age'].invalid && registrationForm.controls['age'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireAge}}
+                                </div>
+                            }
                         </div>
 
                         <div class="mb-3">
-                            <label for="nickname" class="form-label">Nickname</label>
+                            <label for="nickname" class="form-label">Username</label>
                             <input
                                 type="text"
                                 id="nickname"
@@ -58,9 +64,11 @@
                                 formControlName="nickname"
                                 placeholder="Enter your nickname"
                             />
-                            <div *ngIf="registrationForm.controls['nickname'].invalid && registrationForm.controls['nickname'].touched" class="text-danger">
-                                Nickname is required.
-                            </div>
+                            @if (registrationForm.controls['nickname'].invalid && registrationForm.controls['nickname'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireUsername}}
+                                </div>
+                            }
                         </div>
 
                         <div class="mb-3">
@@ -72,9 +80,11 @@
                                 formControlName="country"
                                 placeholder="Enter your country"
                             />
-                            <div *ngIf="registrationForm.controls['country'].invalid && registrationForm.controls['country'].touched" class="text-danger">
-                                Country is required.
-                            </div>
+                            @if (registrationForm.controls['country'].invalid && registrationForm.controls['country'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireCountry}}
+                                </div>
+                            }
                         </div>
 
                         <div class="mb-3">
@@ -86,9 +96,11 @@
                                 formControlName="city"
                                 placeholder="Enter your city"
                             />
-                            <div *ngIf="registrationForm.controls['city'].invalid && registrationForm.controls['city'].touched" class="text-danger">
-                                City is required.
-                            </div>
+                            @if (registrationForm.controls['city'].invalid && registrationForm.controls['city'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireCity}}
+                                </div>
+                            }
                         </div>
 
                         <div class="mb-3">
@@ -100,9 +112,11 @@
                                 formControlName="email"
                                 placeholder="Enter your email"
                             />
-                            <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched" class="text-danger">
-                                Please enter a valid email address.
-                            </div>
+                            @if (registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requireEmail}}
+                                </div>
+                            }
                         </div>
 
                         <div class="mb-3">
@@ -114,9 +128,11 @@
                                 formControlName="phone"
                                 placeholder="Enter your mobile phone"
                             />
-                            <div *ngIf="registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].touched" class="text-danger">
-                                Please enter a valid phone number.
-                            </div>
+                            @if (registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].touched) {
+                                <div class="text-danger">
+                                    {{HtmlMessagesEnum.requirePhone}}
+                                </div>
+                            }
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100" [disabled]="registrationForm.invalid">

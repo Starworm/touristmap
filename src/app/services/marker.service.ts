@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {Observable, of} from "rxjs";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class MarkerService {
 
     private usCities: string = '/assets/data/usa-cities.geojson';
@@ -20,7 +18,7 @@ export class MarkerService {
      * returns list of country's attractions
      * @param id - country id
      */
-    public getData(id: number): Observable<any> {
+    getData(id: number): Observable<any> {
         switch (id) {
             case 1:
                 return this.http.get(this.usCities);

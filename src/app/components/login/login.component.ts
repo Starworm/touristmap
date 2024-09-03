@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {Router} from "@angular/router";
+import * as titles from '../../enums/titles.enum';
+import {HtmlMessagesEnum} from "../../enums/html-messages.enum";
+import {APP_ROUTES} from "../../app.routes";
 
 @Component({
   selector: 'app-login',
@@ -14,8 +17,11 @@ import {Router} from "@angular/router";
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+    readonly HtmlMessagesEnum = HtmlMessagesEnum;
+    titles = titles;
     /** login form object */
-    public loginForm: FormGroup;
+    loginForm: FormGroup;
 
     constructor(
         private fb: FormBuilder,
@@ -30,7 +36,7 @@ export class LoginComponent {
     /**
      * handles login form
      */
-    public onSubmit() {
+    onSubmit() {
         if(this.loginForm.valid) {
             const { username, password } = this.loginForm.value;
             console.log('username', username);
@@ -42,11 +48,14 @@ export class LoginComponent {
     /**
      * navigates to reset password page
      */
-    public forgetPassword() {
-        this.router.navigate(['resetpassword']);
+    toResetPasswordPage() {
+        this.router.navigate([APP_ROUTES.resetPassword]);
     }
 
-    newRegistration() {
-        this.router.navigate(['newuser']);
+    /**
+     * navigates to registration page
+     */
+    toNewRegistrationPage() {
+        this.router.navigate([APP_ROUTES.newUser]);
     }
 }

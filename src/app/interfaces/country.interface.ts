@@ -2,14 +2,13 @@
  * interface for a country from backend
  */
 export interface CountryInterface {
-    /** country's id */
     id: number,
     /** country's name */
-    name: string,
+    name?: string,
     /** country's latitude coordinates */
-    lat: number,
+    latitude: number,
     /** country's longitude coordinates */
-    lon: number,
+    longitude: number,
     /** zoom size to country */
     zoom: number
 }

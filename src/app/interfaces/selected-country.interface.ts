@@ -2,12 +2,11 @@
  * interface for a selected country from the selector
  */
 export interface SelectedCountryInterface {
-    /** country's id */
     id: number,
     /** country's latitude coordinates */
-    lat: number,
+    latitude: number,
     /** country's longitude coordinates */
-    lon: number,
+    longitude: number,
     /** zoom size to country */
     zoom: number
 }

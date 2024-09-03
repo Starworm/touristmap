@@ -1,25 +1,27 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import {EventInterface} from "../../interfaces/event.interface";
 import {DatePipe} from "@angular/common";
 import {EventsService} from "../../services/events.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {PopupConstantsEnum} from "../../enums/popup-constants.enum";
 
 @Component({
-  selector: 'app-popup',
-  standalone: true,
-    imports: [
-        DatePipe
-    ],
-  templateUrl: './popup.component.html',
-  styleUrl: './popup.component.scss'
+    selector: 'app-popup',
+    standalone: true,
+      imports: [
+          DatePipe
+      ],
+    templateUrl: './popup.component.html',
+    styleUrl: './popup.component.scss',
+    providers: [EventsService]
 })
 export class PopupComponent implements OnInit {
     @Input() event: EventInterface;
     /** if user joined to event or not */
-    public isJoinedToEvent: boolean = false;
-    /** 'join' button's text */
-    public JOINED = 'Already joined';
-    public NOT_JOINED = 'Join';
-    public buttonJoinText = '';
+    isJoinedToEvent: boolean = false;
+    buttonJoinText = '';
+
+    private destroyRef = inject(DestroyRef);
 
     constructor(
         private eventsService: EventsService
@@ -31,6 +33,10 @@ export class PopupComponent implements OnInit {
         this.getMyEvents();
     }
 
+    /**
+     * splits standard datetime string and highlights the time
+     * @param dateTime datetime string
+     */
     timeSplit(dateTime: string) {
         return dateTime.split('T')[1];
     }
@@ -59,9 +65,12 @@ export class PopupComponent implements OnInit {
      */
     getMyEvents() {
         this.eventsService.getMyEvents()
+            .pipe(
+                takeUntilDestroyed(this.destroyRef)
+            )
             .subscribe(res => {
                 this.isJoinedToEvent = res.find(el => el.id === this.event.id) === undefined;
-                this.buttonJoinText = this.isJoinedToEvent ? this.NOT_JOINED : this.JOINED;
+                this.buttonJoinText = this.isJoinedToEvent ? PopupConstantsEnum.NOT_JOINED : PopupConstantsEnum.JOINED;
             })
     }
 }

@@ -1,11 +1,10 @@
 export interface EventInterface {
-    /** event's id */
     id: number;
     /** event's name */
     label: string;
     /** event's type */
     type: string;
-    /** event\s description */
+    /** event's description */
     description: string;
     /** event's host */
     host: {

@@ -1,8 +1,9 @@
 <div class="container">
-    <h3 class="title">Select the country</h3>
+    <h3 class="title">{{titles.TitlesEnum.selectCountry}}</h3>
     <select class="form-select selector" (change)="onCountryChange($event)">
         <option selected>Select</option>
-        <option *ngFor="let country of countryList"
-                [value]="country.lat + ',' + country.lon + ',' + country.zoom + ',' + country.id">{{country.name}}</option>
+        @for (country of countryList; track country.id) {
+            <option [value]="country.latitude + ',' + country.longitude + ',' + country.zoom + ',' + country.id">{{country.name}}</option>
+        }
     </select>
 </div>

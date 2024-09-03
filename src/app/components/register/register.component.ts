@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import * as titles from '../../enums/titles.enum';
+import {HtmlMessagesEnum} from "../../enums/html-messages.enum";
 
 @Component({
     selector: 'app-register',
@@ -13,7 +15,9 @@ import {NgIf} from "@angular/common";
     styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-    public registrationForm: FormGroup;
+    registrationForm: FormGroup;
+    titles = titles;
+    readonly HtmlMessagesEnum = HtmlMessagesEnum;
 
     constructor(
         private fb: FormBuilder
@@ -30,7 +34,10 @@ export class RegisterComponent {
         });
     }
 
-    public onSubmit() {
+    /**
+     * submits form
+     */
+    onSubmit() {
         if (this.registrationForm.valid) {
             console.log('Registration form data:', this.registrationForm.value);
             // Здесь можно добавить логику для отправки данных на сервер
