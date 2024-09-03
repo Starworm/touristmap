@@ -65,6 +65,7 @@ export class MapComponent implements OnInit {
     // Map's provider settings
     private MAP_TEMPLATE = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     private MAP_ATTRIBUTES = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+    private providerMap = 'openStreetMap';
 
     constructor(
         private markerService: MarkerService,
@@ -88,7 +89,7 @@ export class MapComponent implements OnInit {
 
     ngOnInit() {
         L.Marker.prototype.options.icon = this.iconDefault;
-        this.initMap();
+        this.initMap(this.providerMap);
     }
 
     /**
@@ -145,7 +146,7 @@ export class MapComponent implements OnInit {
      * map initialization
      * @private
      */
-    private initMap(): void {
+    private initMap(providerKey: string): void {
         // initial map position
         this.countriesService.getCountries()
             .pipe(
@@ -159,15 +160,17 @@ export class MapComponent implements OnInit {
                 });
             })
 
-
-        // provider of map (currently OpenStreetMap)
-        const tiles = L.tileLayer(this.MAP_TEMPLATE, {
-            maxZoom: MapConstantsEnum.ZOOM_MAX,
-            minZoom: MapConstantsEnum.ZOOM_MIN,
-            attribution: this.MAP_ATTRIBUTES
-        });
-
-        tiles.addTo(this.map);
+        let tiles: L.TileLayer;
+        switch (providerKey) {
+            case 'openStreetMap':
+                // provider of map (currently OpenStreetMap)
+                tiles = L.tileLayer(this.MAP_TEMPLATE, {
+                    maxZoom: MapConstantsEnum.ZOOM_MAX,
+                    minZoom: MapConstantsEnum.ZOOM_MIN,
+                    attribution: this.MAP_ATTRIBUTES
+                });
+                tiles.addTo(this.map);
+        }
     }
 
     /**
